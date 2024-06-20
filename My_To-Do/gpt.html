@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      .result {
+        margin-top: 20px;
+      }
+      input {
+        padding: 8px;
+        width: 80%;
+        font-size: 1.2rem;
+      }
+
+      button {
+        padding: 12px;
+        outline: none;
+        border: none;
+        background-color: rgb(39, 50, 46);
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        border-radius: 8px;
+        object-fit: contain;
+      }
+      button:hover {
+        background-color: black;
+        color: white;
+      }
+      .new-item {
+        /* border: 4px solid orange;  */
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+      }
+      .new-item span {
+        font-size: 1.4rem;
+        margin: 1%;
+      }
+      .new-item button {
+        background-color: rgb(82, 34, 82);
+        color: white;
+        padding: 10px;
+        width: fit-content;
+        margin: 1%;
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- html -->
+    <input type="text" id="inputValue" placeholder="Enter Your Task Here..." />
+    <button id="btn">Add task</button>
+    <div class="result"></div>
+
+    <!-- Script -->
+    <script>
+      let btn = document.getElementById("btn");
+      btn.addEventListener("click", () => {
+        const inputValue = document.getElementById("inputValue").value;
+
+        // Get  the result container
+        const result = document.querySelector(".result");
+
+        //Create a div to add item in result container
+        let newItem = document.createElement("div");
+
+        //give this div a class Name
+        newItem.className = "new-item";
+
+        //Create a span tag to hold the value
+        let finalValue = document.createElement("span");
+        finalValue.innerText = inputValue;
+
+        //append the newValue in result container
+        result.appendChild(newItem);
+
+        //Create a removeButton
+        let removeButton = document.createElement("button");
+        removeButton.innerText = "Remove";
+
+        //Add Event on removeButton
+        removeButton.addEventListener("click", () => {
+          result.removeChild(newItem);
+        });
+
+        // //append Element
+        newItem.appendChild(finalValue);
+        newItem.appendChild(removeButton);
+
+        // //append the newValue in result container
+        // result.appendChild(newItem);
+
+        //Clear the Value
+        document.getElementById("inputValue").value = "";
+      });
+    </script>
+  </body>
+</html>
